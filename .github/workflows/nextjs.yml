@@ -3,7 +3,6 @@ name: fanma
 on:
   push:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
   docs:
@@ -28,9 +27,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           # 选择要使用的 node 版本
-          node-version: 20
+          node-version: "20"
           # 缓存 pnpm 依赖
           cache: pnpm
+      - name: run install
+        run: npm install
 
       # 运行构建脚本
       - name: Build Next.js site
